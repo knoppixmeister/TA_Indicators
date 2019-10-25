@@ -5,23 +5,22 @@ import org.jfree.data.time.ohlc.*;
 
 public class PERC_R {
 	public static TimeSeries run(final OHLCSeries data, final int period) {
-		final TimeSeries csTs = new TimeSeries("");
+		final TimeSeries result = new TimeSeries("OHLC_%R");
+
 		final TimeSeries hsTs = new TimeSeries("");
 		final TimeSeries lsTs = new TimeSeries("");
 
 		for(int key=0; key<data.getItemCount(); key++) {
-			csTs.add(data.getPeriod(key), ((OHLCItem)data.getDataItem(key)).getCloseValue());
 			hsTs.add(data.getPeriod(key), ((OHLCItem)data.getDataItem(key)).getHighValue());
 			lsTs.add(data.getPeriod(key), ((OHLCItem)data.getDataItem(key)).getLowValue());
 		}
 
-		final TimeSeries percWillTs	=	new TimeSeries("OHLC_%R");
 		final TimeSeries highsTs	=	Utils.highest(hsTs, period);
 		final TimeSeries lowsTs		=	Utils.lowest(lsTs, period);
 
 		// (highest(high, 14)-close)/(highest(high, 14)-lowest(low, 14))*-100
 		for(int key=0; key < data.getItemCount(); key++) {
-			percWillTs.add(
+			result.add(
 				data.getPeriod(key),
 				(
 					highsTs.getDataItem(key).getValue().doubleValue() -
@@ -36,6 +35,6 @@ public class PERC_R {
 			);
 		}
 
-		return percWillTs;
+		return result;
 	}
 }
