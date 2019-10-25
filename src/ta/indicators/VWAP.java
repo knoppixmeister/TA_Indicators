@@ -17,7 +17,7 @@ import org.jfree.data.time.ohlc.*;
 	https://www.tradingview.com/wiki/Volume_Weighted_Average_Price_(VWAP)/ru
 */
 public class VWAP {
-	public static TimeSeries run(final OHLCSeries data, final int period) {
+	public static TimeSeries run(final OHLCSeries data) {
 		final TimeSeries result = new TimeSeries("VWAP");
 
 		OHLCItem cndl;
