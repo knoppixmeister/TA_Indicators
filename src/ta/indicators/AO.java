@@ -4,8 +4,8 @@ import org.jfree.data.time.*;
 import org.jfree.data.time.ohlc.*;
 
 public class AO {
-	public static TimeSeriesCollection run(final OHLCSeries data) {
-		final TimeSeries aoTs = new TimeSeries("");
+	public static TimeSeries run(final OHLCSeries data) {
+		final TimeSeries result = new TimeSeries("AO");
 
 		final TimeSeries seriesHl2Ts = new TimeSeries("HL2");
 		for(int key=0; key<data.getItemCount(); key++) {
@@ -22,18 +22,11 @@ public class AO {
 		final TimeSeries sma34	= SMA.run(seriesHl2Ts, 34);
 
 		for(int key=0; key<data.getItemCount(); key++) {
-			aoTs.add(
+			result.add(
 				data.getPeriod(key),
 				sma5.getDataItem(key).getValue().doubleValue() - sma34.getDataItem(key).getValue().doubleValue()
 			);
 		}
-
-		final TimeSeries aoWmaTs = WMA.run(aoTs, 15);
-
-		final TimeSeriesCollection result = new TimeSeriesCollection();
-
-		result.addSeries(aoTs);
-		result.addSeries(aoWmaTs);
 
 		return result;
 	}
