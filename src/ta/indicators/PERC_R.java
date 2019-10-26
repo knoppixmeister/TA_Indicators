@@ -5,7 +5,7 @@ import org.jfree.data.time.ohlc.*;
 
 public class PERC_R {
 	public static TimeSeries run(final OHLCSeries data, final int period) {
-		final TimeSeries result = new TimeSeries("OHLC_%R");
+		final TimeSeries result = new TimeSeries("%R");
 
 		final TimeSeries hsTs = new TimeSeries("");
 		final TimeSeries lsTs = new TimeSeries("");
