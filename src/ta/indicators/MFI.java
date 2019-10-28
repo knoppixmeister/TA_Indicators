@@ -5,7 +5,7 @@ import org.jfree.data.time.ohlc.*;
 
 public class MFI {
 	public static TimeSeries run(final OHLCSeries data, final int length) {
-		final TimeSeries result = new TimeSeries("RESULT");
+		final TimeSeries result = new TimeSeries("MFI");
 
 		final TimeSeries tpTs = new TimeSeries("TP");
 		for(int key=0; key<data.getItemCount(); key++) {
