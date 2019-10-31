@@ -42,13 +42,13 @@ public class ICHIMOKU {
 
 		final TimeSeriesCollection result = new TimeSeriesCollection();
 
-		final TimeSeries TenkanTs	=	middleDonchian(data, conversionPeriod);
+		final TimeSeries TenkanTs = middleDonchian(data, conversionPeriod);
 		TenkanTs.setKey("Tenkan_Conversion");
 
-		final TimeSeries KijunTs 	=	middleDonchian(data, basePeriod);
+		final TimeSeries KijunTs = middleDonchian(data, basePeriod);
 		KijunTs.setKey("Kijun_Base");
 
-		final TimeSeries SenkouATs	=	middleDonchian(data, laggingSpan2Period);
+		final TimeSeries SenkouATs = middleDonchian(data, laggingSpan2Period);
 		SenkouATs.setKey("SenkouA_LaggngSpan2");
 
 		final TimeSeries SenkouBTs = new TimeSeries("SenkouB_GreenCloud");
