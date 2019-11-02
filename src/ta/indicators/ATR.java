@@ -5,21 +5,19 @@ import org.jfree.data.time.ohlc.*;
 
 public class ATR {
 	public static TimeSeries run(final OHLCSeries data, final int period) {
-		final TimeSeries result = new TimeSeries("");
+		final TimeSeries result = new TimeSeries("ATR");
 
 		double high_minus_low = 0;
 		double high_minus_close_past = -1;
 		double low_minus_close_past = -1;
 		double tr = 0;
 		double tr_sum = 0;
-
 		double previous_atr = 0;
+
 		for(int key=0; key < data.getItemCount(); key++) {
 			high_minus_low = ((OHLCItem)data.getDataItem(key)).getHighValue() - ((OHLCItem)data.getDataItem(key)).getLowValue();
 
-			if(key >= 0 && key < period-1) {
-				result.add(data.getPeriod(key), 0);
-			}
+			if(key >= 0 && key < period-1) result.add(data.getPeriod(key), 0);
 
 			if(key >= 1) {
 				high_minus_close_past = Math.abs(
