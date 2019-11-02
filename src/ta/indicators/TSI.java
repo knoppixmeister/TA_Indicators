@@ -4,8 +4,8 @@ import org.jfree.data.time.*;
 import org.jfree.data.time.ohlc.*;
 
 public class TSI {
-	public static TimeSeriesCollection run(OHLCSeries data, int longLength, int shortLength) {
-		final TimeSeriesCollection result = new TimeSeriesCollection();
+	public static TimeSeries run(OHLCSeries data, int longLength, int shortLength) {
+		final TimeSeries result = new TimeSeries("TSI");
 
 		final TimeSeries closesTs = new TimeSeries("");
 		for(int key=data.getItemCount()-1; key >= 0; key--) {
@@ -28,10 +28,8 @@ public class TSI {
 		}
 
 		final TimeSeries doubleSmoothedAbsPcTs = doubleSmooth(absPcTs, longLength, shortLength);
-
-		final TimeSeries tsiValueTs = new TimeSeries("TSI");
 		for(int key = doubleSmoothedPcTs.getItemCount()-1; key >= 0; key--) {
-			tsiValueTs.add(
+			result.add(
 				doubleSmoothedPcTs.getTimePeriod(key),
 				100.0 *
 				(
@@ -40,9 +38,6 @@ public class TSI {
 				)
 			);
 		}
-
-		result.addSeries(tsiValueTs);
-		//result.addSeries(indicators.EMA.run(tsiValueTs, signalLength));
 
 		return result;
 	}
