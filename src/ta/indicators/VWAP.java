@@ -19,7 +19,7 @@ public class VWAP {
 		for(int key=0; key<data.getItemCount(); key++) {
 			cndl = (OHLCItem) data.getDataItem(key);
 
-			if(cndl.getPeriod().getFirstMillisecond() <= SDT.getMillis()) continue;
+			if(cndl.getPeriod().getFirstMillisecond() < SDT.getMillis()) continue;
 
 			tp = (cndl.getHighValue() + cndl.getLowValue() + cndl.getCloseValue())/3.0;
 			cumTpVol += tp * cndl.getVolume();
