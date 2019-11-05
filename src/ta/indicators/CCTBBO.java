@@ -36,15 +36,12 @@ public class CCTBBO {
 		for(int i=0; i<data.getItemCount(); i++) {
 			result.add(
 				data.getPeriod(i),
-				ta.indicators.Utils.round(
-					100 * (
-						srcTs.getDataItem(i).getValue().doubleValue() + 2 * stDevTs.getDataItem(i).getValue().doubleValue() -
-						smaTs.getDataItem(i).getValue().doubleValue()
-					)
-					/
-					(4 * stDevTs.getDataItem(i).getValue().doubleValue()),
-					8
+				100 * (
+					srcTs.getDataItem(i).getValue().doubleValue() + 2 * stDevTs.getDataItem(i).getValue().doubleValue() -
+					smaTs.getDataItem(i).getValue().doubleValue()
 				)
+				/
+				(4 * stDevTs.getDataItem(i).getValue().doubleValue())
 			);
 		}
 
