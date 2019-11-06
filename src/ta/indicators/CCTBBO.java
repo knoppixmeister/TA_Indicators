@@ -11,8 +11,8 @@ public class CCTBBO {
 
 		length      = input(21)
 		lengthMA    = input(13)
-		src = close
-		cctbbo = 100 * (src + 2*stdev(src, length) - sma(src, length)) / (4 * stdev(src, length))
+		src			= close
+		cctbbo		= 100 * (src + 2*stdev(src, length) - sma(src, length)) / (4 * stdev(src, length))
 
 		ul = hline(100, color=gray)
 		ll = hline(0, color=gray)
